@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>WEBTOON 이상형 토너먼트</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="./assets/index.css" rel="stylesheet"> -->
+    <style>
+
+        body{
+            padding-top: 100px;
+        }
+
+        header{
+            height: 47px;
+            padding: 1rem;
+            color: white;
+            background: rgb(94, 94, 94);
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .contents-box {
+            height: 90%;
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+        }
+        .contents-box .image-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-basis: 50%;
+            height: 100%;
+        }
+        .contents-box .image-box img {
+            width: 50%;
+            height: 90%;
+        }
+
+        .contents-box .image-box  img:hover{
+        border:2px solid rgb(144, 147, 150);
+        border-radius:4px;
+        -webkit-filter: grayscale(100%);
+        filter: gray;
+        cursor: pointer;
+        }
+
+
+        .image-box p:hover {
+        text-decoration:underline;
+        cursor: pointer;
+        }
+
+        .contents-box .image-box p {
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 400;
+            background-color: rgb(161, 161, 161);
+            color: #fff;
+        }
+        .contents-box .vs-box {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 30px;
+        }
+        .contents-box .vs-box hr {    
+            position: absolute;
+            top: 50%;
+            width: 100%;
+        }
+        .contents-box .vs-box p {           
+            position: absolute;
+            top: 50%;
+            margin-top: -7.5px;
+            left: 50%;
+            margin-left: -20px;
+            font-weight: bold;
+            background-color: #fff;
+            padding: 0 10px;
+            font-size: 20px;
+        }
+        /* Mobile version */
+        @media screen and (max-width: 500px) {
+            .contents-box .image-box img {
+                max-height: 200px;
+                max-width: 300px;    
+                border: 1px solid #000;
+            }
+            .contents-box .image-box p {
+                width: 300px;
+                height: 30px;
+                line-height: 30px;
+                border: 1px solid #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-box">
+        <header class="head-box">
+            <!-- <button class="home-btn" onclick="onHome()">HOME</button> -->
+            <h2>World Cup Party <span id="roundNumber"></span></h2>
+            <!-- <button class="back-btn" onclick="onBack()">BACK</button> -->
+        </header>
+        <ul class="contents-box">
+            <li class="image-box" onclick="selectIdealPeople(1)">
+                <img id="imageUrl1" src="./assets/images/noImage.png">
+                <p id="people1"></p>
+            </li>
+            <!-- <li class="vs-box">
+                <hr />
+                <p>VS</p>
+            </li> -->
+            <li class="image-box" onclick="selectIdealPeople(2)">
+                <img id="imageUrl2" src="./assets/images/noImage.png">
+                <p id="people2"></p>
+            </li>
+        </ul>
+    </div>
+    <script src="./assets/People.js"></script>
+    <script>
+        const imageUrl1 = document.getElementById('imageUrl1');
+        const imageUrl2 = document.getElementById('imageUrl2');
+        const people1 = document.getElementById('people1');
+        const people2 = document.getElementById('people2');
+        const roundNumber = document.getElementById('roundNumber');
+        const roundN = Number(window.localStorage.getItem('round')); // 2강, 4강, 8강, 16강
+        let roundChk = 0;
+
+        const storageData = { // 이전 라운드 데이터
+            value: window.localStorage.getItem('data'), 
+            get parse() {
+                return this.value ? JSON.parse(this.value) : {};
+            }
+        }
+        const storageHistory = { // 이전 라운드 히스토리
+            value: window.localStorage.getItem('history'),
+            get parse() {
+                return this.value ? JSON.parse(this.value) : {};
+            }
+        }
+        let curHistory = []; // 현제 라운드 히스토리
+
+        // 이전 라운드 데이터가 없을 경우 더미 데이터로 세팅
+        let randomList = [];
+        if(!storageData.parse[(roundN*2)+'강']){
+            const arr = new Array(roundN).fill(null);
+            randomList = arr.reduce((tot, el) => { // 데이터 랜덤셔플
+                let ranN = Math.floor(Math.random()*DATA.length); 
+                tot.push(DATA[ranN]);
+                DATA.splice(ranN, 1);
+                return tot;
+            }, []);
+        }else{
+            randomList = storageData.parse[(roundN*2)+'강'];
+        }
+
+        // 초기값 세팅
+        selectIdealPeople();
+        
+        // 둘 중 하나를 선택 했을때  
+        function selectIdealPeople(idx){
+            // 클릭 이벤트로 호출 했을때 히스토리에 추가
+            if(idx){
+                curHistory[roundChk-2]['result'] = idx-1;
+            }
+
+            // 라운드가 종료 되었을때
+            if(roundChk === randomList.length){
+                alert('다음 라운드로 이동합니다.');
+
+                // 결과값 저장
+                let resultHistory = storageHistory.parse;
+                resultHistory[roundN+'강'] = curHistory;
+                window.localStorage.setItem('history', JSON.stringify(resultHistory));
+                let resultData = storageData.parse;
+                resultData[roundN+'강'] = curHistory.reduce((tot, val) => {
+                    if(val){
+                        tot.push(val.items[val.result]);
+                    }
+                    return tot;
+                }, []);
+                window.localStorage.setItem('data', JSON.stringify(resultData));
+                
+                // 최종라운드일 경우 finish.html로 이동
+                if(roundN/2 === 1){ 
+                    location.replace('./finish.html');
+                }else{ 
+                    window.localStorage.setItem('round', roundN/2);
+                    window.location.reload();
+                }
+                return;
+            }
+
+            curHistory[roundChk] = {
+                items: [ randomList[roundChk], randomList[roundChk+1] ],
+                result: null
+            }
+            people1.innerHTML = randomList[roundChk].name;
+            people2.innerHTML = randomList[roundChk+1].name;
+            imageUrl1.src = randomList[roundChk].url || './assets/images/noImage.png';
+            imageUrl2.src = randomList[roundChk+1].url || './assets/images/noImage.png';
+            roundChk = roundChk+2;
+            roundNumber.innerHTML = `${roundN}강(${roundChk}/${roundN})`;
+        }
+
+        // 첫페이지로 이동 (저장된 데이터 삭제)
+        function onHome(){
+            location.replace('./index.html');
+        }
+
+        // 이전 페이지로 이동 (저장된 데이터 유지)
+        function onBack(){
+            if(roundChk <= 2){
+                alert('첫번째 입니다.');
+                return;
+            }
+            roundChk = roundChk-2;
+            roundNumber.innerHTML = `${roundN}강(${roundChk}/${roundN})`;
+            people1.innerHTML = randomList[roundChk-2].name;
+            people2.innerHTML = randomList[roundChk-1].name;
+            imageUrl1.src = randomList[roundChk-2].url || './assets/images/noImage.png';
+            imageUrl2.src = randomList[roundChk-1].url || './assets/images/noImage.png';
+        }
+    </script>
+</body>
+</html>

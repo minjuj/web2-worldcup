@@ -1,0 +1,18 @@
+var DATA = [
+    { "name": "송강", "url": "https://www.cosinkorea.com/data/photos/20200104/art_15796551566318_40cb82.jpg"},
+    { "name": "우도환", "url": "https://blog.kakaocdn.net/dn/k75ib/btqE74B7cRt/IJirOvfWWYGbWkSuFIBwk0/img.png"},
+    { "name": "김선호", "url": "https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/20/6d26b3f0-a250-404d-bf6b-1fdee23c471f.jpg"},
+    { "name": "김재영", "url": "https://newsimg.hankookilbo.com/cms/articlerelease/2021/10/20/6d26b3f0-a250-404d-bf6b-1fdee23c471f.jpg"},
+    { "name": "서강준", "url": "https://mblogthumb-phinf.pstatic.net/MjAyMDAyMjZfNjkg/MDAxNTgyNjk0MjgwMTAw.E-Yyx3oVoPMaIQJpu_tJMPTtmJfjsOsOc9GL0iOAw6cg.SZ2iRZLALXhhifeEQWvn9Ac4y73kDYk08Co6Xj7gu5Mg.JPEG.eett7777/IMG_4124.jpg?type=w800"},
+    { "name": "공명", "url": "https://blog.kakaocdn.net/dn/btnj95/btrcuIGzuG3/mSzZ87dPAvELaZAUw1TD3k/img.jpg"},
+    { "name": "이도현", "url": "https://t1.daumcdn.net/cfile/tistory/992F75375FE3579411"},
+    { "name": "김수현", "url": "https://img.hankyung.com/photo/202008/BF.23393413.1.jpg"},
+    { "name": "이종석", "url": "https://mblogthumb-phinf.pstatic.net/MjAyMDA0MTdfMTE0/MDAxNTg3MTEyNjg1MTgy.MODHxVr9PZlAKeYQ8M5M3wqU2RHazeaAdyF9wtSbMp4g.msjj2BW_2OPRRWv57WOO5thpL139Dx5PJnwt_bNuKRYg.PNG.thirdsky30/CropArea0008.png?type=w800"},
+    { "name": "송중기", "url": "https://w.namu.la/s/96cf778fbf9bcb7b7de87dde37622335511e4da7ec33d08c66e3325e51562663b837c2b3df7daab286b2b9247e700357bb127061b5de1a8f169a4b29d7f5d923aa9691b9e8fe5ff24e37d4a375f0e997deac7b76bcf85557f4088809b792df69"},
+    { "name": "강하늘", "url": "https://mblogthumb-phinf.pstatic.net/MjAxOTA5MjJfOTYg/MDAxNTY5MTE2MDU1MjA4.D405M6URcSzaXWSuSiqYZ0K9nM0ywCsMWRJygBqjBs8g.q4cJSB0JCVH6w-Qnr22JChYbjyv-9RB8JoK0mW3ybt0g.JPEG.pola0216/D0IpWEXWkAUHggj.jpg?type=w800"},
+    { "name": "지창욱", "url": "https://img.sportsworldi.com/content/image/2020/12/01/20201201516452.jpg"},
+    { "name": "구교환", "url": "https://entertainimg.kbsmedia.co.kr/cms/uploads/BBSIMAGE_20210905125744_e0809112c9cfd807b6b35dfdeeed529d.jpg"},
+    { "name": "주지훈", "url": "http://topclass.chosun.com/news_img/2004/2004_056.jpg"},
+    { "name": "이민기", "url": "https://blog.kakaocdn.net/dn/bX0eqb/btqIXfs97eE/LqLZBUR9BY5G1Yz89NF5p1/img.png"},
+    { "name": "배현성", "url": "https://t1.daumcdn.net/liveboard/newsade/a9965382afd34a2887cdf3128e8e2ecc.JPG"},
+]

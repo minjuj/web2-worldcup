@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>WEBTOON 이상형 토너먼트</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./assets/index.css" rel="stylesheet">
+    <style>
+        .title-point {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-box">
+        <dl class="title-box">
+            <dt><p class="title-point">WEBTOON</p>이상형 토너먼트</dt>
+            <dd>
+                <button class="btn" onclick="onPage(16)">16강</button>
+                <button class="btn" onclick="onPage(8)">8강</button>
+                <button class="btn" onclick="onPage(4)">4강</button>
+            </dd>
+        </dl>
+        <footer>https://github.com/yoonovo/ideal-tourament</footer>
+    </div>
+    <script>      
+        window.localStorage.clear();
+        function onPage(value) {
+            window.localStorage.setItem('round', value);
+            location.replace('./tournament.html');
+        }  
+    </script>
+</body>
+</html>

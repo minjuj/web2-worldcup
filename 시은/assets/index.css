@@ -1,0 +1,74 @@
+* { margin: 0; padding: 0; }
+html,
+body {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.main-box {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.main-box .title-box {
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    margin-top: -120px;
+}
+.title-box dt {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+.title-box dd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.title-box .btn {
+    width: 150px;
+    height: 50px;
+    color:white;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    background-color: rgb(127, 127, 127);
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.title-box .btn:last-child {
+    margin-bottom: 0;
+}
+.title-box .sub-btn {
+    width: 50px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: 2px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.title-box .sub-btn:focus {
+    background-color: #000;
+    color: #fff;
+}
+.title-box .sub-btn:last-child {
+    margin-right: 0;
+}
+footer {
+    display: block;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background-color: gray;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    font-size: 14px;
+}
